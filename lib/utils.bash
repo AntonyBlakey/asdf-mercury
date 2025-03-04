@@ -31,14 +31,20 @@ download_release() {
 
         echo "* Downloading $TOOL_NAME release $version..."
 	if [[ $version =~ ^rotd ]]; then
-                url="$DL_ARCHIVE_REPO/${version}.tar.gz"
+ 		url="$DL_REPO/rotd/mercury-srcdist-${version}.tar.xz"
+     		archive_url="$DL_ARCHIVE_REPO/${version}.tar.gz"
+   		curl "${curl_opts[@]}" -o "$filename" -C - "$url" || \
+     		curl "${curl_opts[@]}" -o "$filename" -C - "$archive_url" || \
+       		fail "Could not download $url or $archive_url"
 	elif [[ $version =~ -beta- ]]; then
-	        url="$DL_REPO/beta/mercury-srcdist-${version}.tar.xz"	
+ 		url="$DL_REPO/beta/mercury-srcdist-${version}.tar.xz"
+   		curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
         else
 	        url="$DL_REPO/release/mercury-srcdist-${version}.tar.xz"
+	 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 	fi
 
-	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+
 }
 
 install_version() {
@@ -53,7 +59,7 @@ install_version() {
 	(
 		cd "$ASDF_DOWNLOAD_PATH"
 		chmod -R u+w .
-		./configure --prefix="$install_path" --enable-libgrades=hlc.gc,hlc.gc.memprof,hlc.gc.prof,hlc.par.gc
+		./configure --prefix="$install_path"
 		make PARALLEL="-j$ASDF_CONCURRENCY"
 		mkdir -p "$install_path"
 		make PARALLEL="-j$ASDF_CONCURRENCY" install
