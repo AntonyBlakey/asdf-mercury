@@ -53,7 +53,7 @@ install_version() {
 	(
 		cd "$ASDF_DOWNLOAD_PATH"
 		chmod -R u+w .
-		./configure --prefix="$install_path"
+		./configure --prefix="$install_path" --enable-libgrades=asm_fast.gc,asm_fast.gc.debug.stseg,hlc.gc,hlc.gc.memprof,hlc.gc.prof,hlc.par.gc,asm_fast.gc.profdeep.stseg
 		make PARALLEL="-j$ASDF_CONCURRENCY"
 		mkdir -p "$install_path"
 		make PARALLEL="-j$ASDF_CONCURRENCY" install
