@@ -53,7 +53,7 @@ install_version() {
 	(
 		cd "$ASDF_DOWNLOAD_PATH"
 		chmod -R u+w .
-		./configure --prefix="$install_path" --disable-most-grades
+		./configure --prefix="$install_path"
 		make PARALLEL="-j$ASDF_CONCURRENCY"
 		mkdir -p "$install_path"
 		make PARALLEL="-j$ASDF_CONCURRENCY" install
