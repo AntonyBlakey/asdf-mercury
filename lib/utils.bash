@@ -3,6 +3,7 @@
 set -euo pipefail
 
 DL_REPO="https://dl.mercurylang.org"
+DL_ARCHIVE_REPO="https://github.com/Mercury-Language/mercury-srcdist/archive"
 TOOL_NAME="mercury"
 TOOL_TEST="mmc --version"
 
@@ -28,16 +29,15 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	release=release
-
+        echo "* Downloading $TOOL_NAME release $version..."
 	if [[ $version =~ ^rotd ]]; then
-		release=rotd
+                url="$DL_ARCHIVE_REPO/${version}.tar.gz"
 	elif [[ $version =~ -beta- ]]; then
-		release=beta
+	        url="$DL_REPO/beta/mercury-srcdist-${version}.tar.xz"	
+        else
+	        url="$DL_REPO/release/mercury-srcdist-${version}.tar.xz"
 	fi
-	url="$DL_REPO/$release/mercury-srcdist-${version}.tar.xz"
 
-	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
 
