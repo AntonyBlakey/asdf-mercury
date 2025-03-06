@@ -1,7 +1,6 @@
 <div align="center">
 
-# asdf-mercury [![Build](https://github.com/susurri/asdf-mercury/actions/workflows/build.yml/badge.svg)](https://github.com/susurri/asdf-mercury/actions/workflows/build.yml) [![Lint](https://github.com/susurri/asdf-mercury/actions/workflows/lint.yml/badge.svg)](https://github.com/susurri/asdf-mercury/actions/workflows/lint.yml)
-
+# asdf-mercury
 
 [mercury](https://www.mercurylang.org/index.html) plugin for the [asdf version manager](https://asdf-vm.com).
 
@@ -25,7 +24,7 @@ Plugin:
 ```shell
 asdf plugin add mercury
 # or
-asdf plugin add mercury https://github.com/susurri/asdf-mercury.git
+asdf plugin add mercury https://github.com/AntonyBlakey/asdf-mercury.git
 ```
 
 mercury:
@@ -51,8 +50,8 @@ install & manage versions.
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-[Thanks goes to these contributors](https://github.com/susurri/asdf-mercury/graphs/contributors)!
+[Thanks goes to these contributors](https://github.com/AntonyBlakey/asdf-mercury/graphs/contributors)!
 
 # License
 
-See [LICENSE](LICENSE) © [susurri](https://github.com/susurri/)
+See [LICENSE](LICENSE) © [susurri](https://github.com/AntonyBlakey/)
